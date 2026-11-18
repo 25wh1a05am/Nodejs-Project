@@ -1,0 +1,29 @@
+const EventEmitter = require('events');
+
+class UserActivity extends EventEmitter {
+
+    login(username) {
+        this.emit('login', username);
+    }
+
+    submit(username, answer) {
+        this.emit('submit', username, answer);
+    }
+}
+
+// Create object
+const user = new UserActivity();
+
+// Login event listener
+user.on('login', (username) => {
+    console.log(username + " logged into the system");
+});
+
+// Submit event listener
+user.on('submit', (username, answer) => {
+    console.log(username + " submitted answer: " + answer);
+});
+
+// Trigger events
+user.login("Ravi");
+user.submit("Ravi", "Option A");
